@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"/>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+		crossorigin="anonymous"/>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+			crossorigin="anonymous"></script>
+	<h:outputStylesheet library="css" name="stylesheet.css"  />
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ecommerce X</title>
+</h:head>
+
+<h:body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">E-commerce X</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Atendimento</a></li>
+				<li><a href="#">Cartão E-commerce X</a></li>
+				<li><a href="#">Meus pedidos</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		
+		<h:form>
+			<div class="row borda">
+			
+				<div class="col-sm-12 col-md-12">
+					<h3 class="centralizado">#{finalizarCompraBean.produto.nome}</h3>
+				</div>
+				<div class="col-sm-12 col-md-12">
+					<hr class ="section-heading-spacer"></hr>
+				</div>
+				
+				<div class="col-sm-12 col-md-6 centro">
+					<h:graphicImage value="#{finalizarCompraBean.produto.imagem}"></h:graphicImage>
+				</div>
+			
+				<div class="col-sm-12 col-md-6">
+					<div class="col-sm-12 col-md-12">
+						<p><span class="de">#{finalizarCompraBean.produto.valor}</span> - <span class="desconto">#{finalizarCompraBean.produto.desconto}</span></p>
+						<p><span class="por">#{finalizarCompraBean.produto.valorDesconto}</span></p>
+						<p><span class="parcelas">#{finalizarCompraBean.produto.parcela}</span></p>
+						<p>#{finalizarCompraBean.produto.descricao}</p>	
+														
+					</div>
+					<div class="col-sm-12 col-md-12 frete">
+						<hr class ="section-heading-spacer"></hr>
+						<p><span>frete e prazo:</span></p>
+						<div class="col-sm-6 col-md-6">
+							<p><span>Tipo serviço:</span></p>
+							<h:selectOneMenu value="#{finalizarCompraBean.tipoServico}">
+								<f:selectItems value="#{finalizarCompraBean.tiposServicos}" var= "item" itemValue="#{item}" itemLabel="#{item.servico}"></f:selectItems>			
+							</h:selectOneMenu>
+							<h:panelGroup rendered="#{finalizarCompraBean.valorFrete != null and finalizarCompraBean.mensgemErroFrete == null}">
+								<p class="freteInformacoes">Valor frete: #{finalizarCompraBean.valorFrete}</p>
+								<p class="freteInformacoes">Prazo entrega: #{finalizarCompraBean.prazoFrete} dia(s) uteis</p>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{finalizarCompraBean.mensgemErroFrete != null}">
+								<p class="freteErro">Erro: #{finalizarCompraBean.mensgemErroFrete}</p>
+							</h:panelGroup>
+							
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<p><span>Insira o seu CEP:</span></p>
+							<div class="col-sm-7 col-md-7">
+								<h:inputText styleClass="form-control" value="#{finalizarCompraBean.cep}" label="CEP"></h:inputText>
+							</div>
+							<div class="col-sm-5 col-md-5">
+								<h:commandButton styleClass="btn btn-info btn-lg" value="Calcular" action="#{finalizarCompraBean.calcularFrete}"/>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+				<div class="col-sm-12 col-md-12 comprar" align="right">
+					<hr class ="section-heading-spacer"></hr>
+					<a href="#" class="btn btn-info btn-lg">
+			          <span class="glyphicon glyphicon-piggy-bank"></span> Compre e economize
+			        </a>
+				</div>
+				
+				
+			</div>			
+			
+		</h:form>
+		<h:panelGroup rendered="#{finalizarCompraBean.isLivro()}">
+			<div>
+				<h3>Informações do produto</h3>
+				<div>
+					<div class="row">
+						<div class="col-sm-12 col-md-12"><h4 class="informacoes">#{finalizarCompraBean.produto.nome}</h4></div>
+						<div class="col-sm-12 col-md-12"><p class="informacoes">#{finalizarCompraBean.produto.descricao}</p></div>
+						<div class="col-sm-12 col-md-12"><h4><b>Informações técnicas</b></h4></div>
+						<div class="row informacoes">
+							<div class="col-sm-6 col-md-6 informacoes">Autor(a)</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.autor}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Título</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.titulo}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Subtítulo</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.subtitulo}</div>
+							<div class="col-sm-6 col-md-6 informacoes">ISBN</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.isbn}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Páginas</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.paginas}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Edição</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.edicao}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Tipo Capa</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.tipoCapa}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Editora</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.editora}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Ano</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.ano}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Assunto</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.assunto}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Idioma</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.idioma}</div>
+							<div class="col-sm-6 col-md-6 informacoes">Código de Barras</div>
+							<div class="col-sm-6 col-md-6 informacoes">#{finalizarCompraBean.produto.codigoBarras}</div>
+						
+						</div>
+					</div>
+					
+				</div>			
+			</div>
+		</h:panelGroup>	
+	</div>
+	
+</h:body>
+</html>

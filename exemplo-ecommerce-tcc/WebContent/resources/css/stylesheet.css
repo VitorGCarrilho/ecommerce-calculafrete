@@ -1,0 +1,65 @@
+div.borda {
+    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px black;
+    padding-bottom: 40px;
+    padding-top:20px;
+}
+.centro {
+    vertical-align: middle;
+    margin: auto;
+    padding: 10px;
+    padding-left: 150px;
+}
+.section-heading-spacer {
+    border-top: 1px solid #e7e7e7;
+}
+h3.centralizado{
+	text-align: center;
+}
+.informacoes{
+	padding: 10px;
+}
+.de{
+	text-decoration: line-through;
+}
+.desconto{
+	color: #01a630;
+}
+.por{
+	color: #e60014;
+	font-size: 30px;
+	font-weight: bold;
+}
+.parcelas{
+	color: #666;
+    font-size: 1em;
+    display: inline;
+}
+.frete{
+	padding-top: 30px;
+	margin-bottom: 5px;
+    display: block;
+}
+.tipoServicos{
+	padding-top: 5px;
+	margin-bottom: 10px;
+    display: block;
+}
+.freteInformacoes{
+	padding-top: 5px;
+	color: #01a630;
+}
+.freteErro{
+	padding-top: 5px;
+	color: #e60014;
+}
+.btn-comprar{
+	background-image: url(http://imagens.americanas.com.br/statics-release-251/catalog/img/v1/auto-sprite.png);
+    background-position: 0px -322px;
+    width: 191px;
+    height: 36px;
+}
+div.comprar{
+	padding-top: 30px;
+}
